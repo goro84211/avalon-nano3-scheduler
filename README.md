@@ -218,7 +218,7 @@ Free for personal use only.
 
 ## Support or Ideas?
 
-Open an issue, suggest an idea, or just message me here!
+Open an issue, suggest an idea, message me here or find me on [Nostr](https://njump.me/npub1qqqqqqz7nhdqz3uuwmzlflxt46lyu7zkuqhcapddhgz66c4ddynswreecw)!
 
 ---
 
