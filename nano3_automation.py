@@ -19,7 +19,7 @@ USERNAME = "root"
 PASSWORD = "root"
 
 # Timezone Configuration (e.g., 'America/New_York', 'Europe/Berlin')
-YOUR_TIMEZONE = "Europe/Monaco"   # Replace with your timezone (list: https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)
+YOUR_TIMEZONE = "Europe/Ljubljana"   # Replace with your timezone (list: https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)
 tz = pytz.timezone(YOUR_TIMEZONE)
 
 # Power Modes (mapping to internal numbers)
@@ -181,40 +181,39 @@ def fetch_and_log_cgminer():
 # Define your weekly schedule (Day → List of (Time, Mode))
 weekly_schedule = {
     "monday": [
-        ("00:00", "Medium"),  # 12 AM - 6 AM: Medium
-        ("06:00", "Low"),     # 6 AM - 9 AM: Low (Peak)
-        ("09:00", "Medium"),  # 9 AM - 5 PM: Medium
-        ("17:00", "Low"),     # 5 PM - 9 PM: Low (Peak)
-        ("21:00", "Medium")   # 9 PM - 12 AM: Medium
+        ("00:00", "Medium"),  # 12 AM - 7 AM: Medium
+        ("07:00", "Low"),     # 7 AM - 14 PM: Low (Peak)
+        ("14:00", "Medium"),  # 14 PM - 16 PM: Medium
+        ("16:00", "Low"),     # 16 PM - 20 PM: Low (Peak)
+        ("20:00", "Medium")   # 20 PM - 12 AM: Medium
     ],
     "tuesday": [
         ("00:00", "Medium"),
-        ("06:00", "Low"),
-        ("09:00", "Medium"),
-        ("17:00", "Low"),
-        ("21:00", "Medium")
+        ("07:00", "Low"),
+        ("14:00", "Medium"),
+        ("16:00", "Low"),
+        ("20:00", "Medium")
     ],
     "wednesday": [
         ("00:00", "Medium"),
         ("07:00", "Low"),
         ("14:00", "Medium"),
-        ("20:20", "Low"),
-        ("20:21", "Medium"),
-        ("20:22", "Low")
+        ("16:00", "Low"),
+        ("20:00", "Medium")
     ],
     "thursday": [
         ("00:00", "Medium"),
-        ("06:00", "Low"),
-        ("09:00", "Medium"),
-        ("17:00", "Low"),
-        ("21:00", "Medium")
+        ("07:00", "Low"),
+        ("14:00", "Medium"),
+        ("16:00", "Low"),
+        ("20:00", "Medium")
     ],
     "friday": [
         ("00:00", "Medium"),
-        ("06:00", "Low"),
-        ("09:00", "Medium"),
-        ("17:00", "Low"),
-        ("21:00", "Medium")
+        ("07:00", "Low"),
+        ("14:00", "Medium"),
+        ("16:00", "Low"),
+        ("20:00", "Medium")
     ],
     "saturday": [
         ("00:00", "Medium"),  # All day Medium on weekends
