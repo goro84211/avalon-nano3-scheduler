@@ -56,7 +56,7 @@ This Python script is designed to automate **Canaan Avalon Miner** management wi
 ### Install dependencies:
 
 
-`pip install requests schedule pytz`
+`pip3 install -r requirements.txt`
 
 ---
 
@@ -158,6 +158,11 @@ Add:
 
 ```bash
 @reboot /usr/bin/python3 /path/to/miner_automation.py
+
+or if you want to include logs
+
+@reboot /usr/bin/python3 /path/to/miner_automation.py >> /path/to/Logs/miner_automation.log 2>&1
+
 ```
 
 Or use `tmux` / `screen` / `systemd` for a persistent session.
@@ -168,7 +173,7 @@ Or use `tmux` / `screen` / `systemd` for a persistent session.
 
 ```
 miner_automation.py
-miner_status.json  <-- output file
+miner_status.json  <-- stats output file
 README.md
 ```
 
