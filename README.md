@@ -1,6 +1,8 @@
 
 # Avalon Nano 3 Home Miner Automation Script
 
+*Latest script works for the Firmware Version 24071801_42c628d. If you have older FW 24032701_48bd3a6, you might consider previous versions where login password is not hashed!*
+
 ## What This Script Does
 
 This Python script is designed to automate **Canaan Avalon Miner** management with the following features:

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import requests
 import schedule
 import time
@@ -9,6 +7,7 @@ import socket
 import json
 import pytz
 import re
+import hashlib
 
 
 # ============ CONFIGURATION ============
@@ -108,7 +107,7 @@ def write_status_json(current_mode, summary, stats, filename="miner_status.json"
 
 def login_and_set_power_mode(mode):
     """
-    Login to miner WebUI and set the power mode.
+    Login to miner WebUI (with hashed password!) and set the power mode.
     """
     session = requests.Session()
     session.headers.update({
@@ -119,19 +118,33 @@ def login_and_set_power_mode(mode):
     try:
         random_delay()
 
-        # LOGIN
+        # --- [1] HASH THE PASSWORD AS JAVASCRIPT DOES ---
+        # 1. sha256 hash of PASSWORD (hex digest, lower case)
+        # 2. Take first 24 characters
+        # 3. Prefix with "ff0000ff"
+        hashpasswd = hashlib.sha256(PASSWORD.encode('utf-8')).hexdigest()[:24]
+        hashpasswd = "ff0000ff" + hashpasswd
+
+        # --- [2] SET THE 'auth' COOKIE ---
+        session.cookies.set("auth", hashpasswd)
+
+
+        # --- [3] LOGIN WITH HASHED PASSWORD ---
         login_url = f"http://{MINER_IP}/login.cgi"
         login_data = {
             "username": USERNAME,
-            "passwd": PASSWORD,
+            "passwd": hashpasswd, # <<< NOT the plain password!
             "loginbtn": "Login"
         }
         resp = session.post(login_url, data=login_data, timeout=REQUEST_TIMEOUT)
 
         print(f"Login Status: {resp.status_code}")
         print('Session cookies after login:', session.cookies)
+        # OPTIONALLY: print the login response text for debugging!
+        # print(resp.text)
 
-        # SET MODE
+        # --- [4] SET THE POWER MODE ---
+        modeconf_url = f"http://{MINER_IP}/modeconf.cgi"
         modeconf_url = f"http://{MINER_IP}/modeconf.cgi"
         config_data = {
             "mode": POWER_MODES[mode],
@@ -142,7 +155,7 @@ def login_and_set_power_mode(mode):
 
         time.sleep(3)  # Small wait
 
-        # CHECK RESULT
+         # --- [5] CHECK RESULT ---
         actual_mode = get_actual_mode(session)
         print(f"Actual Mode after change: {actual_mode}")
 
@@ -194,7 +207,7 @@ weekly_schedule = {
         ("07:00", "Low"),
         ("14:00", "Medium"),
         ("16:00", "Low"),
-        ("20:00", "Medium")
+        ("20:10", "Medium")
     ],
     "wednesday": [
         ("00:00", "Medium"),
@@ -241,7 +254,7 @@ def setup_scheduler():
 setup_scheduler()
 
 # Fetch cgminer summary and stats every 5 minutes
-schedule.every(10).minutes.do(fetch_and_log_cgminer)
+schedule.every(5).minutes.do(fetch_and_log_cgminer)
 print("Scheduled cgminer logging every 10 minutes.")
 
 # Run forever
