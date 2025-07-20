@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+import os
 import requests
 import schedule
 import time
@@ -36,6 +39,9 @@ USER_AGENT = "Mozilla/5.0"
 
 # Miner socket API (default port for CGMiner API)
 CGMINER_API_PORT = 4028
+
+# Path to the stats file (in the project directory where this script lives)
+STATS_FILE = os.path.join(os.path.dirname(__file__), "miner_status.json")
 
 
 # ============ UTILITY FUNCTIONS ============
@@ -91,7 +97,7 @@ def query_cgminer(command):
         return None
 
 
-def write_status_json(current_mode, summary, stats, filename="miner_status.json"):
+def write_status_json(current_mode, summary, stats, filename=STATS_FILE):
     """Write miner status to JSON file (overwrite mode)."""
     status = {
         "Mode": current_mode,
