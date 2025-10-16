@@ -1,4 +1,4 @@
-import socket
+iimport socket
 import json
 
 # Miner IP and CGMiner API port
