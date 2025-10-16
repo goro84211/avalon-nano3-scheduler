@@ -3,7 +3,7 @@ import json
 
 # Miner IP and CGMiner API port
 HOST = '192.168.1.76'
-HOST = '192.168.1.162
+HOST = '192.168.1.162'
 PORT = 4018
 
 # Function to query the miner API
