@@ -16,11 +16,12 @@ import hashlib
 # ============ CONFIGURATION ============
 
 # Miner IP address
-MINER_IP = "192.168.0.59"
+MINER_IP = "192.168.1.76"
+MINER_IP = "192.168.1.162
 
 # Login credentials for power mode control (WebUI)
-USERNAME = "root"
-PASSWORD = "root"
+USERNAME = "georgibtc1111"
+PASSWORD = "123"
 
 # Timezone Configuration (e.g., 'America/New_York', 'Europe/Berlin')
 YOUR_TIMEZONE = "Europe/Ljubljana"   # Replace with your timezone (list: https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)
@@ -38,7 +39,7 @@ REQUEST_TIMEOUT = 10
 USER_AGENT = "Mozilla/5.0"
 
 # Miner socket API (default port for CGMiner API)
-CGMINER_API_PORT = 4028
+CGMINER_API_PORT = 4018
 
 # Path to the stats file (in the project directory where this script lives)
 STATS_FILE = os.path.join(os.path.dirname(__file__), "miner_status.json")
