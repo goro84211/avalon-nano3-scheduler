@@ -2,8 +2,9 @@ import socket
 import json
 
 # Miner IP and CGMiner API port
-HOST = '192.168.0.59'
-PORT = 4028
+HOST = '192.168.176'
+HOST = '192.168.1.162
+PORT = 4018
 
 # Function to query the miner API
 def query_cgminer(command="summary"):
