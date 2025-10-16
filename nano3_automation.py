@@ -16,7 +16,8 @@ import hashlib
 # ============ CONFIGURATION ============
 
 # Miner IP address
-MINER_IP = "192.168.0.59"
+MINER_IP = "192.168.1.76"
+MINER_IP = "192.168.1.162"
 
 # Login credentials for power mode control (WebUI)
 USERNAME = "root"
